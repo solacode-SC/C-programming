@@ -11,60 +11,54 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdarg.h>
 
-static int	check_type(const char *str, void *arg)
-{
-	int	i;
+static int check_type(const char *str, va_list args) {
+    int i = 0;
 
-	i = 0;
-	if (*str == 'c')
-		i += print_char((int)arg);
-	else if (*str == 's')
-		i += print_str((char *)arg);
-	else if (*str == 'p')
-		i += print_ptr((unsigned long)arg, 87);
-	else if (*str == 'd')
-		i += print_int((int)arg);
-	else if (*str == 'i')
-		i += print_int((int)arg);
-	else if (*str == 'u')
-		i += print_unsgd((unsigned int)arg);
-	else if (*str == 'x')
-		i += print_hex((unsigned int)arg, 87);
-	else if (*str == 'X')
-		i += print_hex((unsigned int)arg, 55);
-	return (i);
+    if (*str == 'c')
+        i += print_char(va_arg(args, int)); // Characters are promoted to int
+    else if (*str == 's')
+        i += print_str(va_arg(args, char *));
+    else if (*str == 'p')
+        i += print_ptr((unsigned long)va_arg(args, void *), 87);
+    else if (*str == 'd' || *str == 'i')
+        i += print_int(va_arg(args, int));
+    else if (*str == 'u')
+        i += print_unsgd(va_arg(args, unsigned int));
+    else if (*str == 'x')
+        i += print_hex(va_arg(args, unsigned int), 87);
+    else if (*str == 'X')
+        i += print_hex(va_arg(args, unsigned int), 55);
+
+    return i;
 }
 
-static char	*ft_strchr(const char *s, int c)
-{
-	while (*s != (char)c)
-		if (!*s++)
-			return (0);
-	return ((char *)s);
+static char *ft_strchr(const char *s, int c) {
+    while (*s != (char)c)
+        if (!*s++)
+            return 0;
+    return (char *)s;
 }
 
-int	ft_printf(const char *input, ...)
-{
-	va_list			args;
-	unsigned int	i;
+int ft_printf(const char *input, ...) {
+    va_list args;
+    unsigned int i = 0;
 
-	i = 0;
-	va_start(args, input);
-	while (*input != '\0')
-	{
-		if (*input == '%')
-		{
-			input++;
-			if (ft_strchr("cspdiuxX", *input))
-				i += check_type(input, va_arg(args, void *));
-			else if (*input == '%')
-				i += print_char('%');
-		}
-		else
-			i = i + print_char(*input);
-		input++;
-	}
-	va_end(args);
-	return (i);
+    va_start(args, input);
+    while (*input != '\0') {
+        if (*input == '%') {
+            input++;
+            if (ft_strchr("cspdiuxX", *input))
+                i += check_type(input, args);
+            else if (*input == '%')
+                i += print_char('%');
+        } else {
+            i += print_char(*input);
+        }
+        input++;
+    }
+    va_end(args);
+
+    return i;
 }
