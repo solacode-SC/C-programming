@@ -12,7 +12,7 @@ int	ft_putchar(char c);
 int	ft_putstr(char *str);
 int	ft_putnbr_base(unsigned long nb, char *base);
 int	ft_putnbr(long n);
-int	ft_ohhhhhyeeeh(va_list q, char c, int *i);
+int	check_type(va_list q, char c, int *i);
 int	ft_printf(const char *fmt, ...);
 size_t	ft_strlen(char *str);
 

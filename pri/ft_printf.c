@@ -1,7 +1,7 @@
 
 #include "ft_printf.h"
 
-int	ft_ohhhhhyeeeh(va_list args, char c, int *i)
+int	check_type(va_list args, char c, int *i)
 {
 	int	counter;
 
@@ -55,5 +55,7 @@ int	ft_printf(const char *input, ...)
 
 int main()
 {
-	printf("%s" , "");
+	char *p = "sola";
+	ft_printf("%s %p %d\n", "sds", p, 23);
+	printf("%s %p %d\n", "sds", p, 23);
 }
