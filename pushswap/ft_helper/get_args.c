@@ -5,8 +5,7 @@
 Node* createNode(int data) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     if (!newNode) {
-        printf("Memory allocation error\n");
-        exit(1);
+        return NULL;
     }
     newNode->data = data;
     newNode->next = NULL;

@@ -22,6 +22,10 @@ typedef struct Node {
 } Node;
 
 
+typedef struct a node_a;
+typedef struct b node_b;
+
+
 void parseAndStoreNumbers(const char* str, Node** head);
 void appendNode(Node** head, int data);
 Node* createNode(int data);
