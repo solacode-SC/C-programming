@@ -2,11 +2,13 @@
 
 # Source files
 SRC = main.c \
-      ft_helper/get_args.c \
-      movs/ft_push.c \
-      movs/ft_reverse.c \
-      movs/ft_rotate.c \
-      movs/ft_swap.c
+		ft_helper/get_args.c \
+		ft_helper/helper_list.c \
+		ft_helper/helper_fun.c \
+		movs/ft_push.c \
+		movs/ft_reverse.c \
+		movs/ft_rotate.c \
+		movs/ft_swap.c
 
 OBJ = $(SRC:.c=.o)
 

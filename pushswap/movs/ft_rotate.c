@@ -2,11 +2,11 @@
 
 
 // Function to rotate stack a (move first element to the end)
-void ft_rotatea(node_a **head_ref) {
+void ft_rotatea(stack_t **head_ref) {
     if (*head_ref == NULL || (*head_ref)->next == NULL) return;
 
-    node_a *last = *head_ref;
-    node_a *second = (*head_ref)->next;
+    stack_t *last = *head_ref;
+    stack_t *second = (*head_ref)->next;
     while (last->next != NULL)
         last = last->next;
 
@@ -17,11 +17,11 @@ void ft_rotatea(node_a **head_ref) {
 }
 
 // Function to rotate stack b (move first element to the end)
-void ft_rotateb(node_a **head_ref) {
+void ft_rotateb(stack_t **head_ref) {
     if (*head_ref == NULL || (*head_ref)->next == NULL) return;
 
-    node_a *last = *head_ref;
-    node_a *second = (*head_ref)->next;
+    stack_t *last = *head_ref;
+    stack_t *second = (*head_ref)->next;
     while (last->next != NULL)
         last = last->next;
 
@@ -32,7 +32,7 @@ void ft_rotateb(node_a **head_ref) {
 }
 
 // Function to rotate both stacks a and b
-void ft_rotater(node_a **head_a, node_a **head_b) {
+void ft_rotater(stack_t **head_a, stack_t **head_b) {
     ft_rotatea(head_a);
     ft_rotateb(head_b);
     write(1, "rr\n", 3);
