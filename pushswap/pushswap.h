@@ -38,4 +38,8 @@ int get_listlen(stack_t *head);
 int is_no_digit(const char *str);
 void print_error();
 
+void sorting_three(stack_t **head_a);
+void set_algo(int len, stack_t **head_a, stack_t **head_b);
+int isSorted(stack_t* head);
+
 #endif 

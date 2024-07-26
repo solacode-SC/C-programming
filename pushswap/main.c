@@ -15,12 +15,15 @@ int main(int argc, char **argv) {
             print_error();
     }
     printList(head_a);
-    ft_pushb(&head_a, &head_b);
+    if (isSorted(head_a))
+    {
+        printf("The list is already sorted.\n");
+        return 0;
+    }
+    int len = get_listlen(head_a);
+    set_algo(len, &head_a, &head_b);
+    // stack_t *ref = head_a;
     printList(head_a);
-    stack_t *ref = head_a;
-    if (ref->data > ref->next->data)
-        ft_rotatea(&head_a);
-    printList(head_a);
+    // printList(head_a);
     printList(head_b);
-    free_all(head_a);
 }

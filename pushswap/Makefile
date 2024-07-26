@@ -8,7 +8,9 @@ SRC = main.c \
 		movs/ft_push.c \
 		movs/ft_reverse.c \
 		movs/ft_rotate.c \
-		movs/ft_swap.c
+		movs/ft_swap.c \
+		sorting/set_algo.c \
+		sorting/sorting_three.c
 
 OBJ = $(SRC:.c=.o)
 
