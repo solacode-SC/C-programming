@@ -41,5 +41,6 @@ void print_error();
 void sorting_three(stack_t **head_a);
 void set_algo(int len, stack_t **head_a, stack_t **head_b);
 int isSorted(stack_t* head);
+// void sorting_four(stack **head_a, stack_t **head_b);
 
 #endif 
