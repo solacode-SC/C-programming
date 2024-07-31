@@ -10,12 +10,12 @@ SRC = main.c \
 		movs/ft_rotate.c \
 		movs/ft_swap.c \
 		sorting/set_algo.c \
-		sorting/sorting_three.c
+		sorting/sorting_tools.c
 
 OBJ = $(SRC:.c=.o)
 
 NAME = pushswap.a
-OUT = pushswap
+OUT = push_swap
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra

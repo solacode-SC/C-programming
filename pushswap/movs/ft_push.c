@@ -22,3 +22,6 @@ void ft_pushb(stack_t **head_a, stack_t **head_b) {
     *head_b = temp;
     write(1, "pb\n", 3);
 }
+
+
+

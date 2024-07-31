@@ -1,6 +1,5 @@
 #include "../pushswap.h"
 
-// Function to create a new node
 stack_t* createNode(int data) {
     stack_t* newNode = (stack_t*)malloc(sizeof(stack_t));
     if (!newNode) {
@@ -46,11 +45,12 @@ int get_listlen(stack_t *head) {
     return len;
 }
 
-void free_all(stack_t *heade) {
-    stack_t* temp = heade;
-    while(temp != NULL) {
+void free_all(stack_t **head) {
+    stack_t* temp = *head;
+    while (temp != NULL) {
         stack_t* next = temp->next;
         free(temp);
         temp = next;
     }
+    *head = NULL;
 }
