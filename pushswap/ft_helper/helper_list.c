@@ -38,7 +38,7 @@ void printList(stack_t* head) {
 int get_listlen(stack_t *head) {
     int len = 0;
     stack_t* temp = head;
-    while(temp != NULL) {
+    while(temp->next) {
         len++;
         temp = temp->next;
     }    

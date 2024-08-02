@@ -34,7 +34,11 @@ void ft_swapa(stack_t **head_ref);
 void ft_swapb(stack_t **head_ref);
 void ft_swaps(stack_t **head_ref1, stack_t **head_ref2);
 void sorting_five(stack_t **head_a, stack_t **head_b);
-
+int has_duplicates(stack_t **head_a);
+void quicksort(int *arr, int low, int high);
+int partition(int *arr, int low, int high);
+void copy_to_array(stack_t *head, int *arr);
+void global_sort(stack_t **head_a, stack_t **head_b);
 
 void free_all(stack_t **heade);
 stack_t* createNode(int data);

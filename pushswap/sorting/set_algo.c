@@ -137,7 +137,9 @@ void sorting_five(stack_t **head_a, stack_t **head_b) {
 
 
 void set_algo(int len, stack_t **head_a, stack_t **head_b) {
-    if (len == 2)
+    if (has_duplicates(head_a))
+        print_error(head_a, head_b);
+    else if (len == 2)
         sorting_two(head_a);
     else if (len == 3)
         sorting_three(head_a);
@@ -145,6 +147,6 @@ void set_algo(int len, stack_t **head_a, stack_t **head_b) {
         sorting_four(head_a, head_b);
     else if (len == 5)
         sorting_five(head_a, head_b);
-    // else if (len > 5)
-    //     global_sort(head_a, head_b);
+    else if (len > 5)
+        global_sort(head_a, head_b);
 }

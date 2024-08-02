@@ -20,6 +20,7 @@ int main(int argc, char **argv) {
         // printf("The list is already sorted.\n");
         return 0;
     }
+    // printf("\nhello");
     int len = get_listlen(head_a);
     set_algo(len, &head_a, &head_b);
     printList(head_a);
