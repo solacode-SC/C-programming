@@ -82,9 +82,34 @@ void global_sort(stack_t **head_a, stack_t **head_b) {
     free(sorted_array);
 }
 
-void lets_sort_100(stack_t **head_a, stack_t **head_b) {
+void lets_sort_100(stack_t **head_a, stack_t **head_b, int *sorted_array) {
     int len_list = get_listlen(*head_a);
     int low = 0;
-    int high = 2;
+    int high = 5;
+    stack_t *temp = head_a;
+    while (temp) {
+        if (temp->data < sorted_array[low]) {
+            //pb rb i++ j++
+            ft_pushb(head_a, head_b);
+            ft_rotateb(head_b);
+            if (high < len_list)
+                high++;
+            if (low < high)
+                low++;
+        }
+        else if (temp->data >= sorted_array[low] && temp->data <= sorted_array[high]) {
+            //pb i++ j++
+            ft_pushb(head_a, head_b);
+            if (high < len_list)
+                high++;
+            if (low < high)
+                low++;
+        }
+        else if (temp->data > sorted_array[high]) {
+            // ra
+            ft_rotatea(head_a);
+        }
+        temp = temp->next;
+    } 
 
 }
