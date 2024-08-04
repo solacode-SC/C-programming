@@ -15,15 +15,10 @@ int main(int argc, char **argv) {
             print_error(&head_a, &head_b);
     }
     printList(head_a);
-    if (isSorted(head_a))
-    {
-        // printf("The list is already sorted.\n");
-        return 0;
-    }
     // printf("\nhello");
     int len = get_listlen(head_a);
     set_algo(len, &head_a, &head_b);
-    printList(head_a);
+    // printList(head_a);
     free_all(&head_a);
     free_all(&head_b);
 }

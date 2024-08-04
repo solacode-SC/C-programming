@@ -2,11 +2,9 @@
 #include "../pushswap.h"
 
 int isSorted(stack_t* head) {
-    // An empty list or a list with a single node is considered sorted
     if (head == NULL || head->next == NULL)
         return 1;
 
-    // Traverse the list and check if each element is less than or equal to the next
     stack_t* current = head;
     while (current->next != NULL) {
         if (current->data > current->next->data)
@@ -137,9 +135,9 @@ void sorting_five(stack_t **head_a, stack_t **head_b) {
 
 
 void set_algo(int len, stack_t **head_a, stack_t **head_b) {
-    if (has_duplicates(head_a))
+    if (has_duplicates(head_a) || isSorted(*head_a))
         print_error(head_a, head_b);
-    else if (len == 2)
+    if (len == 2)
         sorting_two(head_a);
     else if (len == 3)
         sorting_three(head_a);

@@ -22,7 +22,7 @@ int has_duplicates(stack_t **head_a) {
 void copy_to_array(stack_t *head, int *arr) {
     int i = 0;
     stack_t *temp = head;
-    while (temp->next) {
+    while (temp) {
         arr[i++] = temp->data;
         temp = temp->next;
     }
@@ -76,7 +76,15 @@ void global_sort(stack_t **head_a, stack_t **head_b) {
         printf("\n num : %d", sorted_array[i]);
         i++;
     }
+    printf("\n");
     free_all(head_a);
     free_all(head_b);
     free(sorted_array);
+}
+
+void lets_sort_100(stack_t **head_a, stack_t **head_b) {
+    int len_list = get_listlen(*head_a);
+    int low = 0;
+    int high = 2;
+
 }
