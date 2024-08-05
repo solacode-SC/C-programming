@@ -76,40 +76,83 @@ void global_sort(stack_t **head_a, stack_t **head_b) {
         printf("\n num : %d", sorted_array[i]);
         i++;
     }
+    printf("\n++++\n");
+    if (len_list >= 6)
+        lets_sort_100(head_a, head_b, sorted_array);
     printf("\n");
-    free_all(head_a);
-    free_all(head_b);
-    free(sorted_array);
 }
 
+// void lets_sort_100(stack_t **head_a, stack_t **head_b, int *sorted_array) {
+//     int len_list = get_listlen(*head_a); // Get the length of list A
+//     int low = 0; // Initialize low index
+//     int high = 5; // Initialize high index
+//     int pushed = 0; // Track the number of elements pushed to B
+
+//     while (*head_a) { // Traverse through each element in list A
+//         if ((*head_a)->data < sorted_array[low]) {
+//             // Push element from A to B, then rotate B
+//             ft_pushb(head_a, head_b);
+//             ft_rotateb(head_b);
+
+//             // Increment high and low pointers if within bounds
+//             pushed++;
+//             if (high < len_list) high++;
+//             if (low < high) low++;
+//         } else if ((*head_a)->data >= sorted_array[low] && (*head_a)->data <= sorted_array[high]) {
+//             // Push element from A to B
+//             ft_pushb(head_a, head_b);
+
+//             // Increment high and low pointers if within bounds
+//             pushed++;
+//             if (high < len_list) high++;
+//             if (low < high) low++;
+//         } else if ((*head_a)->data > sorted_array[high]) {
+//             // Rotate A
+//             ft_rotatea(head_a);
+//         }
+
+//         // If list A is modified, update temp to new head_a
+//         if (pushed) {
+//             pushed = 0;
+//         } else {
+//             // Move to the next element in list A if no push operation was performed
+//             ft_rotatea(head_a);
+//         }
+//     }
+// }
+
+// int set_high(int num) {
+
+// }
 void lets_sort_100(stack_t **head_a, stack_t **head_b, int *sorted_array) {
-    int len_list = get_listlen(*head_a);
-    int low = 0;
-    int high = 5;
-    stack_t *temp = head_a;
-    while (temp) {
-        if (temp->data < sorted_array[low]) {
-            //pb rb i++ j++
+    int len_list = get_listlen(*head_a); // Get the length of list A
+    int low = 0; // Initialize low index
+    int high = 15; // Initialize high index
+
+    while (*head_a) { // Traverse through each element in list A
+        if ((*head_a)->data < sorted_array[low]) {
+            // Push element from A to B, then rotate B
             ft_pushb(head_a, head_b);
             ft_rotateb(head_b);
-            if (high < len_list)
-                high++;
-            if (low < high)
-                low++;
-        }
-        else if (temp->data >= sorted_array[low] && temp->data <= sorted_array[high]) {
-            //pb i++ j++
-            ft_pushb(head_a, head_b);
-            if (high < len_list)
-                high++;
-            if (low < high)
-                low++;
-        }
-        else if (temp->data > sorted_array[high]) {
-            // ra
-            ft_rotatea(head_a);
-        }
-        temp = temp->next;
-    } 
 
+            // Increment high and low pointers if within bounds
+            if (high < len_list - 1) high++;
+            if (low < len_list -1) low++;
+        } else if ((*head_a)->data >= sorted_array[low] && (*head_a)->data <= sorted_array[high]) {
+            // Push element from A to B
+            ft_pushb(head_a, head_b);
+
+            // Increment high and low pointers if within bounds
+            if (high < len_list - 1) high++;
+            if (low < len_list -1) low++;
+        } else if ((*head_a)->data > sorted_array[high]) {
+            // Rotate A
+            ft_rotatea(head_a);
+        } 
+        // else {
+        //     // This should never be reached, but just in case:
+        //     // Rotate A to avoid infinite loop
+        //     ft_rotatea(head_a);
+        // }
+    }
 }

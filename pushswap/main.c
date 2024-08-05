@@ -18,7 +18,8 @@ int main(int argc, char **argv) {
     // printf("\nhello");
     int len = get_listlen(head_a);
     set_algo(len, &head_a, &head_b);
-    // printList(head_a);
+    printList(head_a);
+    printList(head_b);
     free_all(&head_a);
     free_all(&head_b);
 }
