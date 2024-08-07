@@ -21,8 +21,6 @@ int check_dup(const char *str) {
             return 1;
         else if ((str[i] == '-' || str[i] == '+') && !to_skip(str[i - 1]))
             return 1;
-        // else if ((str[i] == '-' || str[i] == '+') && (str[i - 1] < '0' || str[i - 1] > '9'))
-        //     return 1;
         i++;
     }
     return 0;
