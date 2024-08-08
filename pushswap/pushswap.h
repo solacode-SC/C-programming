@@ -40,7 +40,7 @@ int partition(int *arr, int low, int high);
 void copy_to_array(stack_t *head, int *arr);
 void global_sort(stack_t **head_a, stack_t **head_b);
 void lets_sort_100(stack_t **head_a, stack_t **head_b, int *sorted_array);
-void	best_move(stack_t **head_a, stack_t **head_b, int *sorted_array);
+void	best_move(stack_t **head_a, stack_t **head_b);
 
 void free_all(stack_t **heade);
 stack_t* createNode(int data);

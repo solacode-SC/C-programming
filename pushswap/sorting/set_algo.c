@@ -8,10 +8,10 @@ int isSorted(stack_t* head) {
     stack_t* current = head;
     while (current->next != NULL) {
         if (current->data > current->next->data)
-            return 0; // Not sorted
+            return 0;
         current = current->next;
     }
-    return 1; // Sorted
+    return 1;
 }
 
 void sorting_two(stack_t **head_a) {
@@ -24,10 +24,13 @@ void sorting_two(stack_t **head_a) {
 
 void sorting_three(stack_t **head_a) {
     stack_t *ref = *head_a;
-    int a = ref->data;
-    int b = ref->next->data;
-    int c = ref->next->next->data;
+    int a;
+    int b;
+    int c;
 
+    a = ref->data;
+    b = ref->next->data;
+    c = ref->next->next->data;
     if (a > b && b < c && a < c) {
         ft_swapa(head_a);
     } else if (a > b && b > c) {
@@ -44,11 +47,17 @@ void sorting_three(stack_t **head_a) {
 }
 
 int get_max(stack_t **head_a) {
-    stack_t *ref = *head_a;
-    int max_a = ref->data;
-    int i = 0;
-    int max_i = 0;
-    stack_t *current = ref->next;
+    stack_t *ref;
+    stack_t *current;
+    int max_a;
+    int i;
+    int max_i;
+    
+    ref = *head_a;
+    current = ref->next;
+    max_a = ref->data;
+    i = 0;
+    max_i = 0;
     while (current) {
         i++;
         if (current->data > max_a) {
@@ -61,77 +70,47 @@ int get_max(stack_t **head_a) {
 }
 
 void sorting_four(stack_t **head_a, stack_t **head_b) {
-    
-    if (get_max(head_a) == 0) {
+    int max_pos = get_max(head_a);
+
+    if (max_pos == 0) {
         ft_pushb(head_a, head_b);
-        sorting_three(head_a);
-        ft_pusha(head_a, head_b);
-        ft_rotatea(head_a);
-    }
-    else if (get_max(head_a) == 1) {
+    } else if (max_pos == 1) {
         ft_swapa(head_a);
         ft_pushb(head_a, head_b);
-        sorting_three(head_a);
-        ft_pusha(head_a, head_b);
-        ft_rotatea(head_a);
-    }
-    else if (get_max(head_a) == 2) {
+    } else if (max_pos == 2) {
         ft_reverse_rotatea(head_a);
         ft_reverse_rotatea(head_a);
         ft_pushb(head_a, head_b);
-        sorting_three(head_a);
-        ft_pusha(head_a, head_b);
-        ft_rotatea(head_a);
-    }
-    else if (get_max(head_a) == 3) {
+    } else if (max_pos == 3) {
         ft_reverse_rotatea(head_a);
         ft_pushb(head_a, head_b);
-        sorting_three(head_a);
-        ft_pusha(head_a, head_b);
-        ft_rotatea(head_a);
     }
+    
+    sorting_three(head_a);
+    ft_pusha(head_a, head_b);
+    ft_rotatea(head_a);
 }
-
 
 
 void sorting_five(stack_t **head_a, stack_t **head_b) {
-    if (get_max(head_a) == 0) {
-        ft_pushb(head_a, head_b);
-        sorting_four(head_a, head_b);
-        ft_pusha(head_a, head_b);
-        ft_rotatea(head_a);
-    }
-    else if (get_max(head_a) == 1) {
-        ft_swapa(head_a);
-        ft_pushb(head_a, head_b);
-        sorting_four(head_a, head_b);
-        ft_pusha(head_a, head_b);
-        ft_rotatea(head_a);
-    }
-    else if (get_max(head_a) == 2) {
+    int max_pos = get_max(head_a);
+
+    if (max_pos == 0 || max_pos == 1) {
+        if (max_pos == 1) ft_swapa(head_a);
+    } else if (max_pos == 2) {
         ft_rotatea(head_a);
         ft_rotatea(head_a);
-        ft_pushb(head_a, head_b);
-        sorting_four(head_a, head_b);
-        ft_pusha(head_a, head_b);
-        ft_rotatea(head_a);
-    }
-    else if (get_max(head_a) == 3) {
+    } else {
         ft_reverse_rotatea(head_a);
-        ft_reverse_rotatea(head_a);
-        ft_pushb(head_a, head_b);
-        sorting_four(head_a, head_b);
-        ft_pusha(head_a, head_b);
-        ft_rotatea(head_a);
+        if (max_pos == 3) ft_reverse_rotatea(head_a);
     }
-    else if (get_max(head_a) == 4) {
-        ft_reverse_rotatea(head_a);
-        ft_pushb(head_a, head_b);
-        sorting_four(head_a, head_b);
-        ft_pusha(head_a, head_b);
-        ft_rotatea(head_a);
-    }
+
+    ft_pushb(head_a, head_b);
+    sorting_four(head_a, head_b);
+    ft_pusha(head_a, head_b);
+    ft_rotatea(head_a);
 }
+
 
 
 void set_algo(int len, stack_t **head_a, stack_t **head_b) {

@@ -2,7 +2,8 @@
 
 
 static int ft_strlen(const char *str) {
-    int i = 0;
+    int i;
+    i = 0;
     while (str[i])
         i++;
     return i;
@@ -15,7 +16,8 @@ int to_skip(char c) {
         return 0;
 }
 int check_dup(const char *str) {
-    int i = 0;
+    int i;
+    i = 0;
     while (str[i]) {
         if ((str[i] == '-' || str[i] == '+') && (str[i + 1] < '0' || str[i+ 1] > '9'))
             return 1;
@@ -26,8 +28,10 @@ int check_dup(const char *str) {
     return 0;
 }
 int is_no_digit(const char *str) {
-    int i = 0;
-    int len = ft_strlen(str);
+    int i;
+    int len;
+    len = ft_strlen(str);
+    i = 0;
 
     while (len > 0 && to_skip(str[len - 1])) {
         len--;

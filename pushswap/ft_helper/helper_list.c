@@ -10,7 +10,6 @@ stack_t* createNode(int data) {
     return newNode;
 }
 
-// Function to add a node to the end of the linked list
 void appendNode(stack_t** head, int data) {
     stack_t* newNode = createNode(data);
     if (*head == NULL) {
@@ -25,7 +24,6 @@ void appendNode(stack_t** head, int data) {
 }
 
 
-// Function to print the linked list (for testing)
 void printList(stack_t* head) {
     stack_t* temp = head;
     while (temp != NULL) {
