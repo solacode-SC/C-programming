@@ -1,6 +1,15 @@
-# Makefile
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: soel-mou <soel-mou@student.1337.ma>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/08 03:18:54 by soel-mou          #+#    #+#              #
+#    Updated: 2024/08/08 03:18:54 by soel-mou         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-# Source files
 SRC = main.c \
 		ft_helper/get_args.c \
 		ft_helper/helper_list.c \
@@ -10,7 +19,9 @@ SRC = main.c \
 		movs/ft_rotate.c \
 		movs/ft_swap.c \
 		sorting/set_algo.c \
-		sorting/sorting_tools.c
+		sorting/sorting_tools.c \
+		sorting/sort_big_nums.c \
+		sorting/sorting_helper.c
 
 OBJ = $(SRC:.c=.o)
 

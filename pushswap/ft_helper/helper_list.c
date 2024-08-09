@@ -1,54 +1,72 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helper_list.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soel-mou <soel-mou@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/08 03:18:01 by soel-mou          #+#    #+#             */
+/*   Updated: 2024/08/09 19:33:47 by soel-mou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../pushswap.h"
 
-stack_t* createNode(int data) {
-    stack_t* newNode = (stack_t*)malloc(sizeof(stack_t));
-    if (!newNode) {
-        return NULL;
-    }
-    newNode->data = data;
-    newNode->next = NULL;
-    return newNode;
+t_stack	*createnode(int data)
+{
+	t_stack	*newnode;
+
+	newnode = (t_stack *)malloc(sizeof(t_stack));
+	if (!newnode)
+		return (NULL);
+	newnode->data = data;
+	newnode->next = NULL;
+	return (newnode);
 }
 
-void appendNode(stack_t** head, int data) {
-    stack_t* newNode = createNode(data);
-    if (*head == NULL) {
-        *head = newNode;
-    } else {
-        stack_t* temp = *head;
-        while (temp->next != NULL) {
-            temp = temp->next;
-        }
-        temp->next = newNode;
-    }
+void	appendnode(t_stack **head, int data)
+{
+	t_stack	*newnode;
+	t_stack	*temp;
+
+	newnode = createnode(data);
+	if (*head == NULL)
+		*head = newnode;
+	else
+	{
+		temp = *head;
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = newnode;
+	}
 }
 
+int	get_listlen(t_stack *head)
+{
+	int		len;
+	t_stack	*temp;
 
-void printList(stack_t* head) {
-    stack_t* temp = head;
-    while (temp != NULL) {
-        printf("%d -> ", temp->data);
-        temp = temp->next;
-    }
-    printf("NULL\n");
+	len = 0;
+	temp = head;
+	while (temp)
+	{
+		len++;
+		temp = temp->next;
+	}
+	return (len);
 }
 
-int get_listlen(stack_t *head) {
-    int len = 0;
-    stack_t* temp = head;
-    while(temp) {
-        len++;
-        temp = temp->next;
-    }    
-    return len;
-}
+void	free_all(t_stack **head)
+{
+	t_stack	*temp;
+	t_stack	*next;
 
-void free_all(stack_t **head) {
-    stack_t* temp = *head;
-    while (temp != NULL) {
-        stack_t* next = temp->next;
-        free(temp);
-        temp = next;
-    }
-    *head = NULL;
+	temp = *head;
+	while (temp != NULL)
+	{
+		next = temp->next;
+		free(temp);
+		temp = next;
+	}
+	*head = NULL;
 }
