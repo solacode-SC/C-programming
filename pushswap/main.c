@@ -24,18 +24,18 @@ int	main(int argc, char **argv)
 	head_b = NULL;
 	if (argc <= 1)
 		return (0);
+	while (i < argc)
+	{
+		parseandstorenumbers(argv[i], &head_a, &head_b);
+		i++;
+	}
+	if (get_listlen(head_a) < 2)
+		return (0);
 	else
 	{
-		while (i < argc)
-		{
-			parseandstorenumbers(argv[i], &head_a, &head_b);
-			i++;
-		}
-		if (get_listlen(head_a) < 2)
-			print_error(&head_a, &head_b);
+		len = get_listlen(head_a);
+		set_algo(len, &head_a, &head_b);
 	}
-	len = get_listlen(head_a);
-	set_algo(len, &head_a, &head_b);
 	free_all(&head_a);
 	free_all(&head_b);
 }

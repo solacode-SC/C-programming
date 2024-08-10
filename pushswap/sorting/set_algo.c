@@ -6,7 +6,7 @@
 /*   By: soel-mou <soel-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 03:18:39 by soel-mou          #+#    #+#             */
-/*   Updated: 2024/08/09 19:35:19 by soel-mou         ###   ########.fr       */
+/*   Updated: 2024/08/10 01:33:17 by soel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,9 @@ void	sorting_five(t_stack **head_a, t_stack **head_b)
 
 void	set_algo(int len, t_stack **head_a, t_stack **head_b)
 {
-	if (has_duplicates(head_a) || issorted(*head_a))
+	if (issorted(*head_a))
+		return ;
+	if (has_duplicates(head_a))
 		print_error(head_a, head_b);
 	else if (len == 2)
 		sorting_two(head_a);
