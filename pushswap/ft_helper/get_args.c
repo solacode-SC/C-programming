@@ -46,21 +46,19 @@ void	parseandstorenumbers(const char *str,
 	long	num;
 
 	if (is_no_digit(str))
+	{
 		print_error(head_a, head_b);
+		return ;
+	}
 	while (*str)
 	{
 		if (*str == ' ' || *str == '\t')
 			str++;
-		num = my_strtol(str, &endptr);
-		if (str == endptr)
-			str++;
 		else
 		{
-			if (num > INT_MAX || num < INT_MIN)
-			{
-				print_error(head_a, head_b);
-				return ;
-			}
+			num = my_strtol(str, &endptr);
+			if (str == endptr || num > INT_MAX || num < INT_MIN)
+				return (print_error(head_a, head_b));
 			appendnode(head_a, (int)num);
 			str = endptr;
 		}
