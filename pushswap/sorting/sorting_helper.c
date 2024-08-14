@@ -6,25 +6,25 @@
 /*   By: soel-mou <soel-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 18:55:39 by soel-mou          #+#    #+#             */
-/*   Updated: 2024/08/09 19:35:31 by soel-mou         ###   ########.fr       */
+/*   Updated: 2024/08/10 02:36:24 by soel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-void	plus_one(int start, int end, int len_list)
+void	plus_one(int *start, int *end, int len_list)
 {
-	if (end < len_list -1)
-		end++;
-	start++;
+	if (*end < len_list -1)
+		(*end)++;
+	(*start)++;
 }
 
-void	set_end(int end, int len_list)
+void	set_end(int *end, int len_list)
 {
 	if (len_list <= 100)
-		end = len_list / 6;
+		(*end) = len_list / 6;
 	else
-		end = 35;
+		(*end) = 35;
 }
 
 int	issorted(t_stack *head)

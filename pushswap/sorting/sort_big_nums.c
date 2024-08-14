@@ -6,7 +6,7 @@
 /*   By: soel-mou <soel-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 02:20:45 by soel-mou          #+#    #+#             */
-/*   Updated: 2024/08/09 19:35:23 by soel-mou         ###   ########.fr       */
+/*   Updated: 2024/08/10 02:34:51 by soel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	lets_sort(t_stack **head_a, t_stack **head_b, int *sorted_array)
 
 	len_list = get_listlen(*head_a);
 	end = 0;
-	set_end(end, len_list);
+	set_end(&end, len_list);
 	start = 0;
 	while (*head_a)
 	{
@@ -28,13 +28,13 @@ void	lets_sort(t_stack **head_a, t_stack **head_b, int *sorted_array)
 			&& (*head_a)->data <= sorted_array[end])
 		{
 			ft_pushb(head_a, head_b);
-			plus_one(start, end, len_list);
+			plus_one(&start, &end, len_list);
 		}
 		else if ((*head_a)->data < sorted_array[start])
 		{
 			ft_pushb(head_a, head_b);
 			ft_rotateb(head_b);
-			plus_one(start, end, len_list);
+			plus_one(&start, &end, len_list);
 		}
 		else if ((*head_a)->data > sorted_array[end])
 			ft_rotatea(head_a);
