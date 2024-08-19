@@ -14,30 +14,25 @@ void	ack(int signum)
 void	to_binary(int pid, unsigned char c)
 {
 	int	i;
-	int	pid_check;
 
 	i = 7;
 	while (i >= 0)
 	{
 		g_data.byte = (c >> i) & 1;
 		if (g_data.byte)
-			pid_check = kill(pid, SIGUSR2);
+			kill(pid, SIGUSR2);
 		else
-			pid_check = kill(pid, SIGUSR1);
-		if (pid_check == -1 && c != '\n')
-		{
-			write(1, "pid not found\n", 14);
-			return ;
-		}
-		usleep(500);
+			kill(pid, SIGUSR1);
+		usleep(1000);
 		i--;
 	}
 }
 
 int	main(int ac, char **av)
 {
-	int		pid;
-	char	*msg;
+	int					pid;
+	char				*msg;
+	struct sigaction	sa;
 
 	if (ac != 3)
 	{
@@ -48,6 +43,8 @@ int	main(int ac, char **av)
 	pid = ft_atoi(av[1]);
 	if (pid == -1)
 		return (0);
+	sa.sa_handler = ack;
+	sigaction(SIGUSR1, &sa, NULL);
 	while (*msg)
 	{
 		to_binary(pid, (unsigned char)*msg);
