@@ -1,45 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soel-mou <soel-mou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/27 02:04:52 by soel-mou          #+#    #+#             */
+/*   Updated: 2024/08/27 02:12:05 by soel-mou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minitalk.h"
 
-t_data	g_data = {0};
+t_data	g_data;
 
-void	signal_handler(int signum, siginfo_t *info, void *context)
+void	ft_handler(int signum, siginfo_t *info, void *context)
 {
-	(void)context;
 	if (signum == SIGUSR1)
+		g_data.byte = g_data.byte + (1 << g_data.shift);
+	g_data.shift++;
+	if (g_data.shift == 8)
 	{
-		g_data.current_char <<= 1;
+		write(1, &g_data.byte, 1);
+		if (g_data.byte == '\0')
+		{
+			write(1, "\n", 1);
+			kill((int)info->si_pid, SIGUSR2);
+		}
+		g_data.byte = 0;
+		g_data.shift = 0;
 	}
-	else if (signum == SIGUSR2)
-	{
-		g_data.current_char <<= 1;
-		g_data.current_char |= 1;
-	}
-	g_data.bit_count++;
-	if (g_data.bit_count == 8)
-	{
-		write(1, &g_data.current_char, 1);
-		if (info && info->si_pid && g_data.current_char != '\n')
-			kill(info->si_pid, SIGUSR1);
-		g_data.bit_count = 0;
-		g_data.current_char = 0;
-	}
+	kill((int)info->si_pid, SIGUSR1);
+	(void)context;
 }
 
 int	main(void)
 {
-	struct sigaction	sa;
-	int					pid;
+	int	pid;
 
 	pid = getpid();
-	sa.sa_sigaction = signal_handler;
-	sa.sa_flags = SA_SIGINFO;
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
-	write(1, "Server PID :\n", 13);
 	ft_putnbr(pid);
 	write(1, "\n", 1);
+	g_data.sa.sa_flags = SA_SIGINFO;
+	g_data.sa.sa_sigaction = ft_handler;
+	sigaction(SIGUSR1, &g_data.sa, NULL);
+	sigaction(SIGUSR2, &g_data.sa, NULL);
 	while (1)
-		pause();
+		sleep(1);
 	return (0);
 }

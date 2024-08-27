@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_helper.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soel-mou <soel-mou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/27 02:04:31 by soel-mou          #+#    #+#             */
+/*   Updated: 2024/08/27 02:06:40 by soel-mou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minitalk.h"
 
@@ -34,7 +45,6 @@ void	ft_putnbr(int n)
 {
 	char	num;
 
-
 	if (n == -2147483648)
 	{
 		write(1, "-2147483648", 11);
@@ -55,5 +65,29 @@ void	ft_putnbr(int n)
 	{
 		num = '0' + n;
 		write(1, &num, 1);
+	}
+}
+
+void	ft_wait(int sig)
+{
+	(void)sig;
+	ft_putstr("\nMessage is being sent...!");
+}
+
+int	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+void	ft_putstr(char *s)
+{
+	if (s != NULL)
+	{
+		write(1, s, ft_strlen(s));
 	}
 }
