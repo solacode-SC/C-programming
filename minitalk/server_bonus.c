@@ -37,7 +37,7 @@ int	main(void)
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	write(1, "Server PID :\n", 13);
-	ft_putnbr_fd(pid, 1);
+	ft_putnbr(pid);
 	write(1, "\n", 1);
 	while (1)
 		pause();

@@ -16,24 +16,22 @@ int	ft_atoi(const char *str)
 	return ((int)(sign * result));
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr(int n)
 {
 	char	num;
 
-	if (fd < 0)
-		return ;
 	if (n == -2147483648)
 	{
-		write(fd, "-2147483648", 11);
+		write(1, "-2147483648", 11);
 		return ;
 	}
 	if (n < 0)
 	{
-		write(fd, "-", 1);
+		write(1, "-", 1);
 		n = -n;
 	}
 	if (n > 9)
-		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr(n / 10);
 	num = '0' + (n % 10);
-	write(fd, &num, 1);
+	write(1, &num, 1);
 }

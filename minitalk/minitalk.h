@@ -16,6 +16,6 @@ typedef struct s_data
 
 }			t_data;
 
-void		ft_putnbr_fd(int n, int fd);
+void		ft_putnbr(int n);
 int			ft_atoi(const char *str);
 #endif

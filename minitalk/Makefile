@@ -1,12 +1,12 @@
 
-SRCC=client.c utils.c
+SRCC=client.c ft_helper.c
 SRCCB=client_bonus.c ft_helper.c
 
 OBJC = $(SRCC:.c=.o)
 OBJCB = $(SRCCB:.c=.o)
 
-SRCS=server.c
-SRCSB=server_bonus.c
+SRCS=server.c ft_helper.c
+SRCSB=server_bonus.c ft_helper.c
 
 OBJS = $(SRCS:.c=.o)
 OBJSB = $(SRCSB:.c=.o)
